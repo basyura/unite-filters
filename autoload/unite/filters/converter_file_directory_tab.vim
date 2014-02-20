@@ -54,7 +54,7 @@ function! s:converter.filter(candidates, context)
     if a:context.source.name == 'tab'
       let path = substitute(path, ' (.*)$', '', '')
       let path = substitute(path, '.\{-} ', '', '')
-      if path != ''
+      if path =~ '^Users'
         let path = '/' . path
       endif
       let candidate.word = path
@@ -65,7 +65,7 @@ function! s:converter.filter(candidates, context)
 
     let abbr = unite#util#truncate(abbr, max) . ' '
     let path = unite#util#substitute_path_separator(
-          \ fnamemodify(path, ':~:h'))
+          \ fnamemodify(path, ':~:.:h'))
     let path = substitute(path, '^' . $HOME, '~', '')
     if path ==# '.'
       let path = ''
