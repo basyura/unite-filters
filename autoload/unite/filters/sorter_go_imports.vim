@@ -14,7 +14,7 @@ endfunction
 function! s:sort(lhs, rhs)
   if a:lhs.word =~ '\/'
     if a:rhs.word =~ '\/'
-      return a:lhs.word < a:rhs.word ? -1 : 1
+      return len(a:lhs.word) < len(a:rhs.word) ? -1 : 1
     endif
     return 1
   endif
